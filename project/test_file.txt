@@ -1,0 +1,6 @@
+
+ali aslani
+  File "test2.py", line 1
+    print(ali aslani')
+              ^
+SyntaxError: invalid syntax

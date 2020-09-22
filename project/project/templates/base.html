@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>سامانه هوشمند خرید و فروش سهام</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/koodak" type="text/css"/>
+    <!-- <link rel="stylesheet" media="screen" href="{{url_for('static', filename='styles.css')}}" type="text/css"/> -->
+
+</head>
+
+<body style="direction: rtl; font-family: 'KoodakRegular'; font-size:larger">
+    
+    <section class="hero is-primary is-fullheight">
+
+        <div class="hero-head">
+            <nav class="navbar">
+                <div class="container">
+
+                    <div id="navbarMenuHeroA" class="navbar-menu">
+                        <div class="navbar-end">
+                            <a href="{{ url_for('index') }}" class="navbar-item">
+                                خانه
+                            </a>
+                            {% if current_user.is_authenticated %}
+                            <a href="{{ url_for('profile') }}" class="navbar-item">
+                               خرید و فروش
+                            </a>
+                            <a href="{{ url_for('logout') }}" class="navbar-item" style="float:left;">
+                                خروج
+                            </a>
+                            {% else %}
+                            <a href="{{ url_for('login') }}" class="navbar-item">
+                                ورود
+                            </a>
+                            <a href="{{ url_for('signup') }}" class="navbar-item">
+                                ثبت نام
+                            </a>
+                            {% endif %}
+                            
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="hero-body">
+            <div class="container has-text-centered">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class=f"notification is-{{category}}" style="text-align: right;">
+                            {{message}}<br><br><br>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+               {% block content %}
+               {% endblock %}
+            </div>
+        </div>
+    </section>
+    
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="column is-4 is-offset-4" style="font-family: 'KoodakRegular';  ">
+    <div class="box" style="background-color:#22d1b2;">
+
+    <div class="content-section" style="background-color:#22d1b2;">
+        <form method="POST" action="" >
+            {{ form.hidden_tag() }}
+                <div class="form-group">
+                {% if form.email.errors %}
+                    {{form.email(style="font-family: 'KoodakRegular';",class="input is-large is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{form.email(style="font-family: 'KoodakRegular';",class="input")}}
+                {% endif %}
+                    
+                </div><br>
+                <div class="form-group">
+                    {% if form.password.errors %}
+                    {{form.password(style="font-family: 'KoodakRegular';",class="input is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in form.password.errors %}
+                            <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{form.password(style="font-family: 'KoodakRegular';",class="input")}}
+                {% endif %}
+                </div><br>
+                <div class="form-check">
+                {{form.remember.label(class="form-check-input-label")}}
+                {{form.remember(class="form-check-input")}}
+                </div><br>
+            <div>
+                {{ form.submit(style="font-family: 'KoodakRegular';",class="button is-block is-info is-large is-fullwidth") }}
+            </div>
+            
+
+        </form>
+        
+    </div><br>
+    <div class="border-top pt-3">
+        <small class="text-muted">
+         <a href="{{url_for('signup')}}"><div>
+            <button type="button" style="font-family: 'KoodakRegular';" class="button is-block is-danger is-large is-fullwidth"> قبلا ثبت نام نکرده ام </button>
+            </div></a>
+        </small>
+</div>
+{% endblock %}
